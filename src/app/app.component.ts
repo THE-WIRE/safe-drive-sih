@@ -26,7 +26,7 @@ export class MyApp {
             console.log(event);
           }
         }, 'Cancel']
-      }).present();
+      })
 
     });
   }
