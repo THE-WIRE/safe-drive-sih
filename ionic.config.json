@@ -1,0 +1,8 @@
+{
+  "name": "safe-drive-sih",
+  "app_id": "1ed8f3e1",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
