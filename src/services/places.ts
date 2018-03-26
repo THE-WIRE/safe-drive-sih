@@ -3,7 +3,7 @@ import { SubPlace} from "../models/subPlace";
 import { Location } from "../models/location";
 import { SMS } from '@ionic-native/sms'
 import { Storage } from '@ionic/storage'
-import { AngularFireAuth } from 'angularfire2/auth'
+//import { AngularFireAuth } from 'angularfire2/auth'
 
 
 import firebase from 'firebase'
@@ -22,7 +22,7 @@ export class PlacesService {
               private sms : SMS,
               private storage : Storage,
               private alertCtrl : AlertController,
-              private au : AngularFireAuth
+              // private au : AngularFireAuth
               ) {}
 
   addPlace(title: string,

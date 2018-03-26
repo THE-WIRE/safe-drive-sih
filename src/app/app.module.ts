@@ -32,8 +32,8 @@ import { AgmCoreModule } from '@agm/core';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD7lvSpXWaKkxLRS4Sq4EbYuIDuU1OdERk'
     })
@@ -55,7 +55,6 @@ import { AgmCoreModule } from '@agm/core';
     Camera,
     Network,
     SMS
-
   ]
 })
 export class AppModule {}

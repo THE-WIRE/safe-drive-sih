@@ -15,8 +15,8 @@ import { PlacesService } from "../../services/places";
 import { Storage } from '@ionic/storage'
 import { Network } from '@ionic-native/network'
 
-import firebase from 'firebase'
-//
+
+
 
 @Component({
   selector: 'add-entry',
