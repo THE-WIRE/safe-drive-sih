@@ -41,7 +41,7 @@ export class MyApp {
         this.rootPage = LoginPage
       }
     })
-
+    
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
