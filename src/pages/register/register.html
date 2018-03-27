@@ -7,12 +7,40 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>register</ion-title>
+
+    <!-- Menu Toggle -->
+    <button ion-button icon-only ion-start menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <!-- Title -->
+    <ion-title>Register</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <form #f="ngForm" (ngSubmit)="onSignup(f)">
+      <ion-list>
+        <ion-item>
+          <ion-label fixed>Mail</ion-label>
+          <ion-input
+            type="email"
+            ngModel
+            name="email"
+            required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>Password</ion-label>
+          <ion-input
+            type="password"
+            ngModel
+            name="password"
+            required
+            [minlength]="6"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button ion-button block type="submit" [disabled]="!f.valid">Register</button>
+    </form>
 </ion-content>
