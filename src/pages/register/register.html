@@ -1,9 +1,3 @@
-<!--
-  Generated template for the RegisterPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -21,10 +15,10 @@
 
 
 <ion-content padding>
-  <form #f="ngForm" (ngSubmit)="onSignup(f)">
+  <form #f="ngForm" (ngSubmit)="onSignUp(f.value)">
       <ion-list>
         <ion-item>
-          <ion-label fixed>Mail</ion-label>
+          <ion-label fixed>E-Mail</ion-label>
           <ion-input
             type="email"
             ngModel
@@ -40,7 +34,31 @@
             required
             [minlength]="6"></ion-input>
         </ion-item>
+        <ion-item>
+            <ion-label fixed>Contact</ion-label>
+            <ion-input
+              type="number"
+              ngModel
+              name="contact"
+              [maxlength]="10"
+              [minlength]="10"
+              required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Home City</ion-label>
+            <ion-select required name="home_city" id="home_city" [(ngModel)]="home_city">
+                  <ion-option *ngFor="let city of cities" value="{{city}}">{{city}}</ion-option>
+            </ion-select>
+          </ion-item>
       </ion-list>
       <button ion-button block type="submit" [disabled]="!f.valid">Register</button>
     </form>
+
+    <div class="or-space-div">
+      <span>OR</span>
+    </div>
+
+    <div class="login-btn">
+      <button ion-button block (click)="onLoad(loginPage)">Log In</button>
+    </div>
 </ion-content>

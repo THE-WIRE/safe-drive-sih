@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { NgForm } from '@angular/forms';
+import { RegisterPage } from '../register/register';
 /**
  * Generated class for the LoginPage page.
  *
@@ -15,6 +16,8 @@ import { NgForm } from '@angular/forms';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+
+  registerPage:any = RegisterPage;
 
   constructor(
     public navCtrl: NavController, 
@@ -49,6 +52,10 @@ export class LoginPage {
         buttons: ['OK']
       }).present();
     })
+  }
+
+  onLoad(page:any){
+    this.navCtrl.setRoot(page);
   }
 
 }

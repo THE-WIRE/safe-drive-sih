@@ -36,5 +36,12 @@
     <button ion-button block type="submit" [disabled]="!f.valid">Log In</button>
   </form>
 
+  <div class="or-space-div">
+      <span>OR</span>
+    </div>
+
+    <div class="login-btn">
+      <button ion-button block (click)="onLoad(registerPage)">Register</button>
+    </div>
   
 </ion-content>
