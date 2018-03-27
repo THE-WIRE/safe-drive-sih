@@ -7,18 +7,17 @@ import { AngularFireAuth } from "angularfire2/auth";
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { Page } from 'ionic-angular/navigation/nav-util';
 import { RegisterPage } from '../pages/register/register';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:Page = HomePage;
-  loginPage:Page = LoginPage;
-  registerPage:Page = RegisterPage
+  rootPage:any = HomePage;
+  loginPage:any = LoginPage;
+  registerPage:any = RegisterPage
 
-  isAuthenticatd: boolean = false;
+  isAuthenticated: boolean;
 
   @ViewChild('nav') nav : NavController;
 
@@ -26,29 +25,32 @@ export class MyApp {
     platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen, 
-    private alertCtrl: AlertController, 
     private menuCtrl: MenuController,
     private af:AngularFireAuth) {
+
+      this.isAuthenticated = false;
 
     af.authState.subscribe(user => {
       if(user){
         //Logged in
-        this.isAuthenticatd = true;
+        this.isAuthenticated = true;
         this.rootPage = HomePage
+        console.log("Logged In", this.isAuthenticated);
       } else {
         //Redirect to login page
-        this.isAuthenticatd = false;
-        this.rootPage = LoginPage
+        this.isAuthenticated = false;
+        this.rootPage = LoginPage;
+        console.log("Logged Out", this.isAuthenticated);
       }
     })
-    
+
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
     });
   }
 
-  onLoad(page: Page){
+  onLoad(page: any){
     this.nav.setRoot(page);
     this.menuCtrl.close();
   }

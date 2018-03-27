@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-  <form #f="ngForm" (ngSubmit)="onSignin(f.value)">
+  <form #f="ngForm" (ngSubmit)="onSignIn(f.value)">
     <ion-list>
       <ion-item>
         <ion-label fixed>E-Mail</ion-label>
@@ -33,6 +33,8 @@
           required></ion-input>
       </ion-item>
     </ion-list>
-    <button ion-button block type="submit" [disabled]="!f.valid">Login In</button>
+    <button ion-button block type="submit" [disabled]="!f.valid">Log In</button>
   </form>
+
+  
 </ion-content>
