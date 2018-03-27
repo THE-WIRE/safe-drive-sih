@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http'
 import { IonicStorageModule } from '@ionic/storage'
+import { IonicSwipeAllModule } from 'ionic-swipe-all'
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,7 +37,8 @@ import { AgmCoreModule } from '@agm/core';
     IonicStorageModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD7lvSpXWaKkxLRS4Sq4EbYuIDuU1OdERk'
-    })
+    }),
+    IonicSwipeAllModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

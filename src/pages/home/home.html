@@ -5,29 +5,35 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
+  <ion-content padding>
+      <div swipeAll id="swipe-div"
+      (swipe)="swipeAll($event)"
+      (swipeleft)="swipeLeft($event)"
+      (swiperight)="swipeRight($event)"
+      (swipeup)="swipeUp($event)"
+      (swipedown)="swipeDown($event)">  
+ 
 
-<ion-content padding>
-<add-entry></add-entry>
 
-
-  <ion-fab bottom right #fab>
-    <button ion-fab><ion-icon name="add"></ion-icon></button>
-    <ion-fab-list side="top">
-      <button ion-fab
-              (click)="addAccProne('addAccProne', fab)">
-              <ion-icon name="medkit"></ion-icon>    
-              <ion-label>Add Accident Prone</ion-label>
-      </button>
-      <button ion-fab
-              (click)="addMaintainence('addMaintainence', fab)">
-              <ion-icon name="construct"></ion-icon>    
-              <ion-label>Add Maintainence</ion-label>
-      </button>
-      <button ion-fab
-              (click)="addAccident('addAccident', fab)">
-              <ion-icon name="warning"></ion-icon>    
-              <ion-label>Add Accident</ion-label>
-      </button>
-    </ion-fab-list>
-  </ion-fab>
-</ion-content>
+    <ion-fab bottom right #fab>
+      <button ion-fab><ion-icon name="add"></ion-icon></button>
+      <ion-fab-list side="top">
+        <button ion-fab
+                (click)="addAccProne('addAccProne', fab)">
+                <ion-icon name="medkit"></ion-icon>    
+                <ion-label>Add Accident Prone</ion-label>
+        </button>
+        <button ion-fab
+                (click)="addMaintainence('addMaintainence', fab)">
+                <ion-icon name="construct"></ion-icon>    
+                <ion-label>Add Maintainence</ion-label>
+        </button>
+        <button ion-fab
+                (click)="addAccident('addAccident', fab)">
+                <ion-icon name="warning"></ion-icon>    
+                <ion-label>Add Accident</ion-label>
+        </button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
+  </ion-content>

@@ -1,4 +1,5 @@
-
+<div swipeAll id="swipe-div"
+    (swipedown)="swipeDown($event)">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <ion-list>
       <ion-item>
@@ -101,3 +102,4 @@
       </ion-row>
     </ion-grid>
   </form>
+</div>

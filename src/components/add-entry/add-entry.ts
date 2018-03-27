@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { ModalController, LoadingController, ToastController, AlertController } from "ionic-angular";
+import { ModalController, LoadingController, ToastController, AlertController, NavController, ViewController } from "ionic-angular";
 import { Subscription } from 'rxjs/Subscription';
 
 
@@ -44,7 +44,9 @@ export class AddEntry {
               private placesService : PlacesService,
               private alertCtrl : AlertController,
               private storage : Storage,
-              private network : Network) {
+              private network : Network,
+              private navCtrl : NavController,
+              private viewCtrl : ViewController) {
 
                 if (network.type == 'unknown' || network.type == 'none' || network.type == 'cellular' ){
                     this.isOnline = false;   
@@ -181,6 +183,12 @@ export class AddEntry {
       duration: 10000
     }).present();
   }
+  swipeDown(event: any): any {
+    
+    this.viewCtrl.dismiss();
+    console.log('Swipe Down', event);
+}
+
 
   ionViewDidEnter() {
     if(!this.isOnline){
