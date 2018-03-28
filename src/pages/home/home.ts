@@ -53,16 +53,13 @@ export class HomePage {
     });
 
     this.geoloc.getCurrentPosition(this.options).then(loc => {
-      console.log(loc)
       if(!loc['code']){
         this.locCtrl.getAddress(loc.coords.latitude, loc.coords.longitude).subscribe(res => {
-          console.log(res.json());
           let results = res.json().results;
           results.forEach(x => {
             if(x['types'] == "administrative_area_level_2,political"){
               this.city = x.address_components[0].long_name;
             }
-            console.log(x['types']);
           })
         })
       }
