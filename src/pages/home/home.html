@@ -28,7 +28,10 @@
       (swipeup)="swipeUp($event)"
       (swipedown)="swipeDown($event)">  
  
-
+  <div class="safe-drive-div">
+    <button class="safe-drive-btn" ion-button color="{{safe_drive_btn.color}}" (click)="onSafeDriveClick($event)">{{safe_drive_btn.text}}</button>
+  </div>
+  
 
     <ion-fab bottom right #fab>
       <button ion-fab><ion-icon name="add"></ion-icon></button>
@@ -52,3 +55,15 @@
     </ion-fab>
   </div>
   </ion-content>
+  <ion-footer padding>
+    <div class="emergency-div" swipeAll id="swipe-div-footer"
+    (swipe)="swipeAll($event)"
+    (swipeleft)="swipeLeft($event)"
+    (swiperight)="swipeRight($event)"
+    (swipeup)="swipeUp($event)"
+    (swipedown)="swipeDown($event)">
+      <strong>
+        <span class="emergency-span"> <ion-icon name="arrow-up"></ion-icon> SWIPE IN EMERGENCY</span>
+      </strong>
+    </div>
+  </ion-footer>
