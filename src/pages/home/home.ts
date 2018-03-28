@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, FabContainer, AlertController, ModalController, LoadingController } from 'ionic-angular';
 import {AddEntry} from '../../components/add-entry/add-entry'
 import { AddIssuePage } from '../add-issue/add-issue';
-import { Geolocation } from '@ionic-native/geolocation'
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { ISubscription } from 'rxjs/Subscription'
+import { LocationService } from '../../services/location';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -36,11 +37,13 @@ export class HomePage {
     enableHighAccuracy: true
   }
   loader:any;
+  city: any = "Detecting...";
 
   constructor(
     public navCtrl: NavController,
     private alertCtrl:AlertController,
     private geoloc: Geolocation,
+    private locCtrl: LocationService,
     private loadCtrl: LoadingController,
     private modalCtrl:ModalController) {
 
@@ -48,6 +51,17 @@ export class HomePage {
     this.loader = loadCtrl.create({
       content: 'Starting Safe Drive Mode...'
     });
+
+    this.geoloc.getCurrentPosition(this.options).then(loc => {
+      console.log(loc)
+      if(!loc['code']){
+        this.locCtrl.getAddress(loc.coords.latitude, loc.coords.longitude).subscribe(res => {
+          console.log(res.json());
+          let results = res.json().results[1];
+          this.city = results.address_components[0].long_name;
+        })
+      }
+    })
   }
 
   onSafeDriveClick(event){
@@ -126,7 +140,7 @@ export class HomePage {
       this.modalCtrl.create(AddEntry,{category:0 , isModal : true}).present()
   }
 
-swipeDown(event: any): any {
-    console.log('Swipe Down', event);
-}
+  swipeDown(event: any): any {
+      console.log('Swipe Down', event);
+  }
 }
