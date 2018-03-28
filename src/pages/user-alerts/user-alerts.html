@@ -14,5 +14,16 @@
 
 
 <ion-content padding>
+    <ion-card *ngFor="let location of Locations">
+      <div id="center">
+      <img id = "image"[src]="location.imageUrl">
+      </div>
+      <ion-card-content text-center>
+        <ion-card-title>
+          {{ location.title}}
+        </ion-card-title>
+        <p>{{ location.description }}</p>
 
-</ion-content>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
