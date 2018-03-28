@@ -57,8 +57,13 @@ export class HomePage {
       if(!loc['code']){
         this.locCtrl.getAddress(loc.coords.latitude, loc.coords.longitude).subscribe(res => {
           console.log(res.json());
-          let results = res.json().results[1];
-          this.city = results.address_components[0].long_name;
+          let results = res.json().results;
+          results.forEach(x => {
+            if(x['types'] == "administrative_area_level_2,political"){
+              this.city = x.address_components[0].long_name;
+            }
+            console.log(x['types']);
+          })
         })
       }
     })
