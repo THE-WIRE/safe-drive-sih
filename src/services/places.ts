@@ -36,62 +36,59 @@ export class PlacesService {
 
       console.log(uid);
       const newFileName = Math.floor(Date.now() / 1000)+'_';
-    const load = this.loadCtrl.create({
-      content: 'Submitting your Issue '
-    })
+      const load = this.loadCtrl.create({
+        content: 'Submitting your Issue '
+      })
 
-    console.log(isOnline);
-    
-          
-   if(isOnline){
-
-    console.log('inside isonline');
-    console.log(imageUrl);
-      var storageRef = firebase.storage().ref();
-      var url = 'issue/'+category+'/'+newFileName +firebase.auth().currentUser.uid+'.jpg'
-      var imgref = storageRef.child(url);
-
-
-
-      load.present();
-      imgref.putString(imageUrl, firebase.storage.StringFormat.DATA_URL).then(snapshot=>{
-        
-        const place = new SubPlace(uid,title,description,location,snapshot.downloadURL)
-
-        firebase.database().ref().child('issues/'+category).push(place).then(data=>{
-            load.dismiss();
-            console.log(JSON.stringify(data));
+      console.log(isOnline);
+      
             
+      if(isOnline){
+
+        console.log('inside isonline');
+        console.log(imageUrl);
+        var storageRef = firebase.storage().ref();
+        var url = 'issue/'+category+'/'+newFileName +firebase.auth().currentUser.uid+'.jpg'
+        var imgref = storageRef.child(url);
+
+        load.present();
+        imgref.putString(imageUrl, firebase.storage.StringFormat.DATA_URL).then(snapshot=>{
+          
+          const place = new SubPlace(uid,title,description,location,snapshot.downloadURL)
+
+          firebase.database().ref().child('issues/'+category).push(place).then(data=>{
+              load.dismiss();
+              console.log(JSON.stringify(data));
+              
+          })      
+
+        }).catch(err=>{
+          this.alertCtrl.create({
+            title : 'Something wrong with image upload',
+            buttons:['OK']
+          }).present();
         })
         
+      }
 
-      }).catch(err=>{
-        this.alertCtrl.create({
-          title : 'something wrong with image upload',
-          buttons:['OK']
-        }).present();
-      })
-     
-   }
+      else if(!isOnline){
+          load.present();
+          
+          const place = new SubPlace(uid,title,description,location,'');
 
-   else if(!isOnline){
-      load.present();
-      
-      const place = new SubPlace(uid,title,description,location,'');
+          this.sms.send(description,JSON.stringify(place)).then(data=>{
+            load.dismiss();
+          }).catch(err=>{
+            this.alertCtrl.create({
+              title : 'Was not able to send Issue offline, check your SMS setings',
+              buttons:['OK']
+            }).present();
+          })
+        
+        
+        
 
-      this.sms.send(description,JSON.stringify(place)).then(data=>{
-        load.dismiss();
-      }).catch(err=>{
-        this.alertCtrl.create({
-          title : 'Was not able to send Issue offline, check your SMS setings',
-          buttons:['OK']
-        }).present();
-      })
-    
-    
-    
-
-  }
+      }
 
     }).catch(err=>{
 
@@ -109,10 +106,10 @@ export class PlacesService {
   }
 
   fetchPlaces() {
-   
+  
   }
 
-  
+    
 
   
 }
