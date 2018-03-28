@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { ModalController, LoadingController, ToastController, AlertController, NavController, ViewController } from "ionic-angular";
+import { ModalController, LoadingController, ToastController, AlertController, NavController, ViewController, NavParams } from "ionic-angular";
 import { Subscription } from 'rxjs/Subscription';
 
 
@@ -27,6 +27,8 @@ export class AddEntry {
   connected: Subscription;
   disconnected: Subscription;
   isOnline : Boolean = true;
+  category:any;
+  isModal : boolean;
   //map : GoogleMap;
   location: Location = {
     lat: 19.097230, 
@@ -46,11 +48,15 @@ export class AddEntry {
               private storage : Storage,
               private network : Network,
               private navCtrl : NavController,
+              private navParam : NavParams,
               private viewCtrl : ViewController) {
 
                 if (network.type == 'unknown' || network.type == 'none' || network.type == 'cellular' ){
                     this.isOnline = false;   
                 }
+
+               this.category= navParam.get('category')
+               this.isModal = navParam.get('isModal')
 
                 
   }
@@ -58,8 +64,8 @@ export class AddEntry {
   onSubmit(form: NgForm) {
 
 
-    // this.placesService
-    //   .addPlace(form.value.title, form.value.description, this.location, this.imageUrl,this.isOnline);
+    this.placesService
+      .addPlace(form.value.title, form.value.description, this.location, this.imageUrl,this.isOnline,form.value.categoryH);
     form.reset();
     this.location = {
       lat: 40.7624324,
@@ -184,9 +190,10 @@ export class AddEntry {
     }).present();
   }
   swipeDown(event: any): any {
-    
-    this.viewCtrl.dismiss();
-    console.log('Swipe Down', event);
+    if(this.isModal){ 
+      this.viewCtrl.dismiss();
+      console.log('Swipe Down', event);
+    }
 }
 
 

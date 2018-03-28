@@ -8,6 +8,7 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { Storage } from '@ionic/storage'
 
 @Component({
   templateUrl: 'app.html'
@@ -26,7 +27,8 @@ export class MyApp {
     statusBar: StatusBar, 
     splashScreen: SplashScreen, 
     private menuCtrl: MenuController,
-    private af:AngularFireAuth) {
+    private af:AngularFireAuth,
+    private storage : Storage) {
 
       this.isAuthenticated = false;
 
@@ -36,6 +38,7 @@ export class MyApp {
         this.isAuthenticated = true;
         this.rootPage = HomePage
         console.log("Logged In", this.isAuthenticated);
+        this.storage.set('uid',user.uid);
       } else {
         //Redirect to login page
         this.isAuthenticated = false;

@@ -29,7 +29,8 @@ export class PlacesService {
            description: string,
            location: Location,
            imageUrl: string,
-           isOnline : Boolean) {
+           isOnline : Boolean,
+           category : number ) {
     
     this.storage.get('uid').then(uid=>{
 
@@ -47,7 +48,7 @@ export class PlacesService {
     console.log('inside isonline');
     console.log(imageUrl);
       var storageRef = firebase.storage().ref();
-      var url = 'issue/'+newFileName +firebase.auth().currentUser.uid+'.jpg'
+      var url = 'issue/'+category+'/'+newFileName +firebase.auth().currentUser.uid+'.jpg'
       var imgref = storageRef.child(url);
 
 
@@ -57,7 +58,7 @@ export class PlacesService {
         
         const place = new SubPlace(uid,title,description,location,snapshot.downloadURL)
 
-        firebase.database().ref().child('issues').push(place).then(data=>{
+        firebase.database().ref().child('issues/'+category).push(place).then(data=>{
             load.dismiss();
             console.log(JSON.stringify(data));
             
