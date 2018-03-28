@@ -2,13 +2,17 @@ import { Component } from '@angular/core';
 import { NavController, FabContainer, AlertController, ModalController, LoadingController } from 'ionic-angular';
 import {AddEntry} from '../../components/add-entry/add-entry'
 import { AddIssuePage } from '../add-issue/add-issue';
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation'
+
+import { ISubscription } from 'rxjs/Subscription'
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
+  speed = 0;
+  isDrive = false;
 
   safe_drive_modes: any = [
     {
@@ -32,7 +36,6 @@ export class HomePage {
     enableHighAccuracy: true
   }
   loader:any;
-  speed: any;
 
   constructor(
     public navCtrl: NavController,
@@ -49,6 +52,7 @@ export class HomePage {
 
   onSafeDriveClick(event){
     if(this.safe_drive_btn.color == 'danger'){
+      
       this.loader.present();
       this.startSafeDrive();
 
@@ -62,8 +66,9 @@ export class HomePage {
     this.watcher = this.geoloc.watchPosition(this.options).subscribe(loc => {
       if(loc != undefined && !loc['code']){
         if(loc.coords.speed != undefined){
+          this.isDrive = true;
           console.log(loc.coords.speed);
-          this.speed = loc.coords.speed;
+          this.speed = Math.round((loc.coords.speed)*3.6);
           this.loader.dismiss();
           this.safe_drive_btn = this.safe_drive_modes[1];
         }
@@ -80,6 +85,7 @@ export class HomePage {
   }
 
   stopSafeDrive(){
+    this.isDrive = false;
     if(this.watcher)
       this.watcher.unsubscribe();
   }
@@ -123,5 +129,4 @@ export class HomePage {
 swipeDown(event: any): any {
     console.log('Swipe Down', event);
 }
-
 }
