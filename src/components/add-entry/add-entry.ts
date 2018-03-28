@@ -64,8 +64,8 @@ export class AddEntry {
   onSubmit(form: NgForm) {
 
 
-    // this.placesService
-    //   .addPlace(form.value.title, form.value.description, this.location, this.imageUrl,this.isOnline);
+    this.placesService
+      .addPlace(form.value.title, form.value.description, this.location, this.imageUrl,this.isOnline,form.value.categoryH);
     form.reset();
     this.location = {
       lat: 40.7624324,

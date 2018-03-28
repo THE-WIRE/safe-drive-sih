@@ -10,6 +10,14 @@
 <div swipeAll id="swipe-div"(swipedown)="swipeDown($event)">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <ion-list>
+        <ion-item hidden>
+            <ion-label color="primary">Category</ion-label>
+            <ion-input 
+            text-center 
+            [ngModel]="category"
+            name="categoryH"
+            ngModel></ion-input>
+          </ion-item>
       <ion-item>
         <ion-label color="primary">Category</ion-label>
         <ion-input 
