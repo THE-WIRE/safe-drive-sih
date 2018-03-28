@@ -27,7 +27,23 @@
       (swiperight)="swipeRight($event)"
       (swipeup)="swipeUp($event)"
       (swipedown)="swipeDown($event)">  
- 
+      
+      
+    <ion-item>
+      <ion-label>Drive Mode</ion-label>
+      <ion-toggle [(ngModel)]="isDrive"  (ionChange)="toggleDrive($event)"></ion-toggle>
+    </ion-item>
+    <ion-list *ngIf = "isDrive">
+      <ion-list-header>
+          <ion-label text-center color="dark">{{speed + " " }}km/h</ion-label>
+      </ion-list-header>
+      <ion-item >
+        <ion-range min="0" max="300" [(ngModel)]="speed" color="secondary" >
+          <ion-label range-left>0</ion-label>
+          <ion-label range-right>300km/h</ion-label>
+        </ion-range>
+      </ion-item>
+    </ion-list>
 
 
     <ion-fab bottom right #fab>
