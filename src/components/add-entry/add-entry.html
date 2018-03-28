@@ -1,7 +1,24 @@
-<div swipeAll id="swipe-div"
-    (swipedown)="swipeDown($event)">
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Add Issue</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+<ion-content padding>
+
+<div swipeAll id="swipe-div"(swipedown)="swipeDown($event)">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <ion-list>
+      <ion-item>
+        <ion-label color="primary">Category</ion-label>
+        <ion-input 
+        text-center 
+        [readonly]="true" 
+        [ngModel]="category | issueCat | uppercase"
+        name="category"
+        ngModel></ion-input>
+      </ion-item>
       <ion-item>
         <ion-label fixed>Title</ion-label>
         <ion-input
@@ -103,3 +120,4 @@
     </ion-grid>
   </form>
 </div>
+</ion-content>
