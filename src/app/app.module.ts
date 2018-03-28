@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http'
+import { HttpModule, Http } from '@angular/http'
 import { IonicStorageModule } from '@ionic/storage'
 import { IonicSwipeAllModule } from 'ionic-swipe-all'
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -36,6 +36,7 @@ import { SetLocationPage } from '../components/set-location/set-location'
 
 import { AuthService } from '../services/auth'
 import { PlacesService } from '../services/places'
+import { LocationService } from "../services/location";
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { Network } from '@ionic-native/network';
@@ -84,6 +85,7 @@ import { AgmCoreModule } from '@agm/core';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     PlacesService,
+    LocationService,
     Geolocation,
     Camera,
     Network,
