@@ -7,6 +7,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { ISubscription } from 'rxjs/Subscription'
 import { UserAlertsPage } from '../user-alerts/user-alerts';
 import { LocationService } from '../../services/location';
+import { MyIsuuesPage } from '../my-isuues/my-isuues';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -15,7 +16,8 @@ export class HomePage {
 
   speed = 0;
   isDrive = false;
-  alertPage = UserAlertsPage 
+  alertPage = UserAlertsPage;
+  myIssuePage = MyIsuuesPage; 
 
   safe_drive_modes: any = [
     {

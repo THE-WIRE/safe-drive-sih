@@ -62,16 +62,20 @@ export class MyApp {
           console.log('Request Accepted');
         },
         rej=>{
-          console.log('user has resyricted');
+          console.log('user has restricted');
         }
       
       )
       }
     )
 
-
-
-      
+    this.notify.schedule({
+      id: 2,
+      title: 'Local ILocalNotification Example',
+      text: 'Multi ILocalNotification 2',
+      icon: 'http://example.com/icon.png'
+   });  
+    
     });
   }
 

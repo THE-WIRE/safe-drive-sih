@@ -47,10 +47,10 @@ export class PlacesService {
         console.log('inside isonline');
         console.log(imageUrl);
 
-        if (imageUrl != null) {
+        if(imageUrl != null) {
           console.log('inside if')
           var storageRef = firebase.storage().ref();
-          var url = 'issue/' + category + '/' + newFileName + firebase.auth().currentUser.uid + '.jpg'
+          var url = 'issue/' + newFileName + firebase.auth().currentUser.uid + '.jpg'
           var imgref = storageRef.child(url);
           imgref.putString(imageUrl, firebase.storage.StringFormat.DATA_URL).then(snapshot => {
             

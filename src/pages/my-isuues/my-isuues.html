@@ -14,10 +14,28 @@
 
 
 <ion-content padding>
-    <ion-card>
+    <ion-card *ngFor="let issue of issues | async">
         <ion-card-header>
-          Explore Nearby
+          {{issue.title}}
         </ion-card-header>
+        <ion-card-content>
+          <p>{{issue.description}}</p>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-4>
+                  <button ion-button small disabled color="light">{{issue.status}}</button>
+              </ion-col>
+              <ion-col col-4>
+                  <button ion-button small>details</button>
+              </ion-col>
+              <ion-col col-4>
+                <button ion-button small (click)="resolve()">Resolve</button>
+            </ion-col>
+            </ion-row>
+
+          </ion-grid>
+
+        </ion-card-content>
       
         
       </ion-card>
