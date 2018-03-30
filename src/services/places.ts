@@ -48,14 +48,15 @@ export class PlacesService {
         console.log(imageUrl);
 
         if (imageUrl != null) {
+          console.log('inside if')
           var storageRef = firebase.storage().ref();
           var url = 'issue/' + category + '/' + newFileName + firebase.auth().currentUser.uid + '.jpg'
           var imgref = storageRef.child(url);
           imgref.putString(imageUrl, firebase.storage.StringFormat.DATA_URL).then(snapshot => {
             
-            const place = new SubPlace(uid, title, description, location, snapshot.downloadURL)
+            const place = new SubPlace(uid, title, description, location, snapshot.downloadURL,category)
   
-            firebase.database().ref().child('issues/' + category).push(place).then(data => {
+            firebase.database().ref().child('issues/').push(place).then(data => {
               load.dismiss();
               console.log(JSON.stringify(data));
                 
@@ -75,7 +76,7 @@ export class PlacesService {
       else if(!isOnline){
           load.present();
           
-          const place = new SubPlace(uid,title,description,location,'');
+          const place = new SubPlace(uid,title,description,location,'',category);
 
           this.sms.send(description,JSON.stringify(place)).then(data=>{
             load.dismiss();
