@@ -14,7 +14,7 @@ export class IssueCatPipe implements PipeTransform{
         
             case 1:
                 return 'Accident Prone';
-                
+                 
             
             case 2:
                 return 'Maintainence';
