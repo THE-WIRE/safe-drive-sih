@@ -1,0 +1,24 @@
+page-home {
+
+}
+
+button.round-button-circle{
+width: 250px;
+height:250px;
+padding-bottom: 20px;
+border-radius: 50%;
+border:10px solid #cfdcec;
+overflow:hidden;
+background: #4679BD;
+box-shadow: 0 0 3px gray;
+text-align:center;
+font-family:Verdana;
+font-size:1.2em;
+font-weight:bold;
+text-decoration:none;
+color:#e2eaf3;
+}
+
+.round-button-circle:hover {
+background:#30588e;
+}
