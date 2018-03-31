@@ -8,13 +8,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from "angularfire2/auth";
-import { IssueCatPipe } from '../pipes/IssueCat.pipe'
+import { AngularFireDatabase } from 'angularfire2/database';
+import { IssueCatPipe } from '../pipes/IssueCat.pipe';
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { AddIssuePage } from '../pages/add-issue/add-issue'
+import { UserAlertsPage } from '../pages/user-alerts/user-alerts'
+import { MyIsuuesPage } from '../pages/my-isuues/my-isuues'
 
 const environment ={
   production:false,
@@ -38,7 +42,8 @@ import { LocationService } from "../services/location";
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { Network } from '@ionic-native/network';
-import { SMS } from '@ionic-native/sms'
+import { SMS } from '@ionic-native/sms';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { AgmCoreModule } from '@agm/core';
 import { RightMenuPage } from '../pages/right-menu/right-menu';
@@ -56,6 +61,8 @@ import { SettingsPage } from '../pages/settings/settings';
     AddIssuePage,
     RightMenuPage,
     SettingsPage
+    UserAlertsPage,
+    MyIsuuesPage
   ],
   imports: [
     BrowserModule,
@@ -80,6 +87,8 @@ import { SettingsPage } from '../pages/settings/settings';
     AddIssuePage,
     RightMenuPage,
     SettingsPage
+    UserAlertsPage,
+    MyIsuuesPage
   ],
   providers: [
     StatusBar,
@@ -91,7 +100,9 @@ import { SettingsPage } from '../pages/settings/settings';
     Geolocation,
     Camera,
     Network,
-    SMS
+    SMS,
+    AngularFireDatabase,
+    LocalNotifications
   ]
 })
 export class AppModule {}

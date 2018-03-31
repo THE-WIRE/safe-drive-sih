@@ -5,10 +5,11 @@ import { AddIssuePage } from '../add-issue/add-issue';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { ISubscription } from 'rxjs/Subscription'
+import { UserAlertsPage } from '../user-alerts/user-alerts';
 import { LocationService } from '../../services/location';
 import { RightMenuPage } from '../right-menu/right-menu';
 import { SettingsPage } from '../settings/settings';
-
+import { MyIsuuesPage } from '../my-isuues/my-isuues';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class HomePage {
 
   speed = 0;
   isDrive = false;
+  alertPage = UserAlertsPage;
+  myIssuePage = MyIsuuesPage; 
 
   safe_drive_modes: any = [
     {
@@ -41,7 +44,7 @@ export class HomePage {
     // timeout: 30000,
     enableHighAccuracy: true
   }
-  loader:any;
+  
   city: any = "Detecting...";
 
   constructor(
@@ -54,9 +57,7 @@ export class HomePage {
     private modalCtrl:ModalController) {
 
     this.safe_drive_btn = this.safe_drive_modes[0];
-    this.loader = loadCtrl.create({
-      content: 'Starting Safe Drive Mode...'
-    });
+    
 
     this.geoloc.getCurrentPosition(this.options).then(loc => {
       if(!loc['code']){
@@ -75,8 +76,10 @@ export class HomePage {
   onSafeDriveClick(event){
     if(this.safe_drive_btn.color == 'danger'){
       
-      this.loader.present();
-      this.startSafeDrive();
+      let loader = this.loadCtrl.create({
+        content: 'Starting Safe Drive Mode...'
+      });
+      this.startSafeDrive(loader);
 
     } else if(this.safe_drive_btn.color == 'secondary' || this.safe_drive_btn.color == 'default'){
       this.stopSafeDrive();
@@ -84,19 +87,19 @@ export class HomePage {
     }
   }
 
-  startSafeDrive(){
+  startSafeDrive(loader){
     this.watcher = this.geoloc.watchPosition(this.options).subscribe(loc => {
       if(loc != undefined && !loc['code']){
         if(loc.coords.speed != undefined){
           this.isDrive = true;
           console.log(loc.coords.speed);
           this.speed = Math.round((loc.coords.speed)*3.6);
-          this.loader.dismiss();
+          loader.dismiss();
           this.safe_drive_btn = this.safe_drive_modes[1];
         }
       }
       if(loc['code']){
-        this.loader.dismiss();
+        loader.dismiss();
         this.alertCtrl.create({
           title: 'Error starting drive mode!',
           subTitle: 'Unable to detect vehicle speed',

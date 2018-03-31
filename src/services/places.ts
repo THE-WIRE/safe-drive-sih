@@ -40,35 +40,37 @@ export class PlacesService {
         content: 'Submitting your Issue '
       })
 
-      console.log(isOnline);
-      
-            
+      load.present();
+
       if(isOnline){
 
         console.log('inside isonline');
         console.log(imageUrl);
-        var storageRef = firebase.storage().ref();
-        var url = 'issue/'+category+'/'+newFileName +firebase.auth().currentUser.uid+'.jpg'
-        var imgref = storageRef.child(url);
 
-        load.present();
-        imgref.putString(imageUrl, firebase.storage.StringFormat.DATA_URL).then(snapshot=>{
-          
-          const place = new SubPlace(uid,title,description,location,snapshot.downloadURL)
-
+        if(imageUrl != null) {
+          console.log('inside if')
+          var storageRef = firebase.storage().ref();
+          var url = 'issue/' + newFileName + firebase.auth().currentUser.uid + '.jpg'
+          var imgref = storageRef.child(url);
+          imgref.putString(imageUrl, firebase.storage.StringFormat.DATA_URL).then(snapshot => {
+            
           place['category'] = category;
           firebase.database().ref().child('issues/0').push(place).then(data=>{
+
+            
               load.dismiss();
               console.log(JSON.stringify(data));
-              
-          })      
-
-        }).catch(err=>{
-          this.alertCtrl.create({
-            title : 'Something wrong with image upload',
-            buttons:['OK']
-          }).present();
-        })
+                
+            })
+          }).catch(err => {
+            this.alertCtrl.create({
+              title: 'Something wrong with image upload',
+              buttons: ['OK']
+            }).present();
+          })
+        } else {
+          console.log('No image clicked');
+        }
         
       }
 

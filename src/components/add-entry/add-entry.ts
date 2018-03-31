@@ -35,7 +35,7 @@ export class AddEntry {
     lng:  72.913031
   };
   locationIsSet = false;
-  imageUrl = '';
+  imageUrl = null;
   imgFile : File;
 
   constructor(private modalCtrl: ModalController,
@@ -136,7 +136,17 @@ export class AddEntry {
         message: 'Try clicking picture again',
         buttons: ['Ok']
       });
-      alert.present();
+      alert.present();this.notify.schedule([{
+        id: 1,
+        text: 'Multi ILocalNotification 1',
+        
+        data: { secret:key }
+       },{
+        id: 2,
+        title: 'Local ILocalNotification Example',
+        text: 'Multi ILocalNotification 2',
+        icon: 'http://example.com/icon.png'
+     }]);
      });
     
 

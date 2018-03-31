@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { Storage } from '@ionic/storage'
+import { LocalNotifications } from '@ionic-native/local-notifications'
 
 @Component({
   templateUrl: 'app.html'
@@ -28,7 +29,9 @@ export class MyApp {
     splashScreen: SplashScreen, 
     private menuCtrl: MenuController,
     private af:AngularFireAuth,
-    private storage : Storage) {
+    private storage : Storage,
+    private notify : LocalNotifications
+  ) {
 
       this.isAuthenticated = false;
 
@@ -50,6 +53,29 @@ export class MyApp {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
+      
+      this.notify.hasPermission().then(done=>{
+        console.log('app has permission');
+      },
+      reject=>{
+        this.notify.requestPermission().then(accept=>{
+          console.log('Request Accepted');
+        },
+        rej=>{
+          console.log('user has restricted');
+        }
+      
+      )
+      }
+    )
+
+    this.notify.schedule({
+      id: 2,
+      title: 'Local ILocalNotification Example',
+      text: 'Multi ILocalNotification 2',
+      icon: 'http://example.com/icon.png'
+   });  
+    
     });
   }
 
