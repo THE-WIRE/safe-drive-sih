@@ -10,6 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from "angularfire2/auth";
 import { AngularFireDatabase } from 'angularfire2/database';
 import { IssueCatPipe } from '../pipes/IssueCat.pipe';
+import { IssueStatusPipe } from '../pipes/IssueStatus.pipe';
 
 
 import { MyApp } from './app.component';
@@ -60,7 +61,7 @@ import { SettingsPage } from '../pages/settings/settings';
     IssueCatPipe,
     AddIssuePage,
     RightMenuPage,
-    SettingsPage
+    SettingsPage,
     UserAlertsPage,
     MyIsuuesPage
   ],
@@ -86,7 +87,7 @@ import { SettingsPage } from '../pages/settings/settings';
     SetLocationPage,
     AddIssuePage,
     RightMenuPage,
-    SettingsPage
+    SettingsPage,
     UserAlertsPage,
     MyIsuuesPage
   ],
@@ -102,7 +103,8 @@ import { SettingsPage } from '../pages/settings/settings';
     Network,
     SMS,
     AngularFireDatabase,
-    LocalNotifications
+    LocalNotifications,
+    IssueStatusPipe
   ]
 })
 export class AppModule {}
