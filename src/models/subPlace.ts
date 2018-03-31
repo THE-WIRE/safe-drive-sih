@@ -8,5 +8,7 @@ export class SubPlace {
     public description: string,
     public location: Location,
     public imageUrl: string,
-    public category : number) {}
+    public category : number,
+    public status : number,
+    public timestamp:any) {}
 }
