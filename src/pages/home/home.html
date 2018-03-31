@@ -7,12 +7,11 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Click the button to swap the text of the DIV element:</p>
-
-<p>
-<button class="round-button-circle" onclick="myFunction()">
-<div id="myDIV">Drive Mode ON</div>
-
-</br><span> 8km/hr</span>
+<div id="container">
+<button id="round-button-circle" (click)="myFunction();">
+<div id="myDIV">Drive Mode OFF</div>
+<br/>
+<span> 8km/hr</span>
 </button>
+</div>
 </ion-content>
