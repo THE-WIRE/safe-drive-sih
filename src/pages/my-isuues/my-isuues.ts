@@ -21,7 +21,7 @@ export class MyIsuuesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private db : AngularFireDatabase,private au : AngularFireAuth) {
 
-   this.issues = db.list('/issues',ref=> ref.orderByChild('uid').equalTo(au.auth.currentUser.uid)).valueChanges()
+   this.issues = db.list('/issues/0',ref=> ref.orderByChild('uid').equalTo(au.auth.currentUser.uid)).valueChanges()
    
   }
 

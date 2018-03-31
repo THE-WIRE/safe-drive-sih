@@ -70,7 +70,7 @@ export class MyApp {
     )
 
     this.notify.schedule({
-      id: 2,
+      id: 1,
       title: 'Local ILocalNotification Example',
       text: 'Multi ILocalNotification 2',
       icon: 'http://example.com/icon.png'
