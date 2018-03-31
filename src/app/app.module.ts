@@ -59,6 +59,7 @@ import { SettingsPage } from '../pages/settings/settings';
     AddEntry,
     SetLocationPage,
     IssueCatPipe,
+    IssueStatusPipe,
     AddIssuePage,
     RightMenuPage,
     SettingsPage,
@@ -103,8 +104,8 @@ import { SettingsPage } from '../pages/settings/settings';
     Network,
     SMS,
     AngularFireDatabase,
-    LocalNotifications,
-    IssueStatusPipe
+    LocalNotifications
+    
   ]
 })
 export class AppModule {}
