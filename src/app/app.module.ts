@@ -41,6 +41,8 @@ import { Network } from '@ionic-native/network';
 import { SMS } from '@ionic-native/sms'
 
 import { AgmCoreModule } from '@agm/core';
+import { RightMenuPage } from '../pages/right-menu/right-menu';
+import { SettingsPage } from '../pages/settings/settings';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { AgmCoreModule } from '@agm/core';
     AddEntry,
     SetLocationPage,
     IssueCatPipe,
-    AddIssuePage
+    AddIssuePage,
+    RightMenuPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,9 @@ import { AgmCoreModule } from '@agm/core';
     RegisterPage,
     AddEntry,
     SetLocationPage,
-    AddIssuePage
+    AddIssuePage,
+    RightMenuPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,
