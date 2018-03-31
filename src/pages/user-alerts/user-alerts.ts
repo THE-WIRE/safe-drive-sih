@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase} from 'angularfire2/database'
-
-
+import { AngularFireDatabase} from 'angularfire2/database';
 import { Storage } from '@ionic/storage'
-
 import firebase from 'firebase'
 /**
  * Generated class for the UserAlertsPage page.

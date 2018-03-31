@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireDatabase } from "angularfire2/database";
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
@@ -30,7 +31,8 @@ export class MyApp {
     private menuCtrl: MenuController,
     private af:AngularFireAuth,
     private storage : Storage,
-    private notify : LocalNotifications
+    private notify : LocalNotifications,
+    private db: AngularFireDatabase
   ) {
 
       this.isAuthenticated = false;
@@ -63,19 +65,10 @@ export class MyApp {
         },
         rej=>{
           console.log('user has restricted');
-        }
-      
-      )
-      }
-    )
+        })
+      });
 
-    this.notify.schedule({
-      id: 1,
-      title: 'Local ILocalNotification Example',
-      text: 'Multi ILocalNotification 2',
-      icon: 'http://example.com/icon.png'
-   });  
-    
+      
     });
   }
 
