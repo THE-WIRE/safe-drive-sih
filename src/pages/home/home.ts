@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, FabContainer, AlertController, ModalController, LoadingController } from 'ionic-angular';
+import { NavController, FabContainer, AlertController, ModalController, LoadingController, PopoverController } from 'ionic-angular';
 import {AddEntry} from '../../components/add-entry/add-entry'
 import { AddIssuePage } from '../add-issue/add-issue';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -7,7 +7,11 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { ISubscription } from 'rxjs/Subscription'
 import { UserAlertsPage } from '../user-alerts/user-alerts';
 import { LocationService } from '../../services/location';
+import { RightMenuPage } from '../right-menu/right-menu';
+import { SettingsPage } from '../settings/settings';
 import { MyIsuuesPage } from '../my-isuues/my-isuues';
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -49,6 +53,7 @@ export class HomePage {
     private geoloc: Geolocation,
     private locCtrl: LocationService,
     private loadCtrl: LoadingController,
+    private popOverCtrl: PopoverController,
     private modalCtrl:ModalController) {
 
     this.safe_drive_btn = this.safe_drive_modes[0];
@@ -134,6 +139,7 @@ export class HomePage {
 
   swipeLeft(event: any): any {
       console.log('Swipe Left', event);
+      this.navCtrl.push(SettingsPage);
   }
 
   swipeRight(event: any): any {
@@ -148,5 +154,11 @@ export class HomePage {
 
   swipeDown(event: any): any {
       console.log('Swipe Down', event);
+  }
+
+  onRightMenuClick(event){
+    this.popOverCtrl.create(RightMenuPage).present({
+      ev: event
+    });
   }
 }

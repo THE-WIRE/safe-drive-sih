@@ -22,4 +22,8 @@ export class SettingsPage {
     console.log('ionViewDidLoad SettingsPage');
   }
 
+  onBack(){
+    this.navCtrl.pop();
+  }
+
 }

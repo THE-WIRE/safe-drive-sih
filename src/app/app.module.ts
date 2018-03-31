@@ -46,6 +46,8 @@ import { SMS } from '@ionic-native/sms';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { AgmCoreModule } from '@agm/core';
+import { RightMenuPage } from '../pages/right-menu/right-menu';
+import { SettingsPage } from '../pages/settings/settings';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { AgmCoreModule } from '@agm/core';
     SetLocationPage,
     IssueCatPipe,
     AddIssuePage,
+    RightMenuPage,
+    SettingsPage
     UserAlertsPage,
     MyIsuuesPage
   ],
@@ -81,6 +85,8 @@ import { AgmCoreModule } from '@agm/core';
     AddEntry,
     SetLocationPage,
     AddIssuePage,
+    RightMenuPage,
+    SettingsPage
     UserAlertsPage,
     MyIsuuesPage
   ],
