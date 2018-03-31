@@ -49,8 +49,27 @@
         </ion-range>
       </ion-item>
     </ion-list>
-    <button ion-button [navPush]="alertPage">add place</button>
-    <button ion-button [navPush]="myIssuePage">my issues</button>
+    <ion-item>
+      
+        <ion-card *ngFor="let alert of alerts">
+          <!-- <ion-card-header>
+            {{alert.title}}
+          </ion-card-header> -->
+          <ion-card-content>
+              {{alert.description}}
+          </ion-card-content>
+          <hr>
+        </ion-card>
+      
+    </ion-item>
+    <div style="text-align:center;">
+      <!-- <button ion-button [navPush]="alertPage">my alerts</button><br> -->
+      <button style="width:100%;" ion-button [navPush]="myIssuePage" >my issues</button>
+    </div>
+
+    
+    
+    
 
 
     <ion-fab bottom right #fab>

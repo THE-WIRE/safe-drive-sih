@@ -73,6 +73,12 @@ export class AddEntry {
     };
     this.imageUrl = '';
     this.locationIsSet = false;
+    if(this.isModal){
+      this.viewCtrl.dismiss();
+    }else{
+      this.navCtrl.pop();
+    }
+    
   }
   
 

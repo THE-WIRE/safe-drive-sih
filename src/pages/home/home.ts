@@ -10,6 +10,8 @@ import { LocationService } from '../../services/location';
 import { RightMenuPage } from '../right-menu/right-menu';
 import { SettingsPage } from '../settings/settings';
 import { MyIsuuesPage } from '../my-isuues/my-isuues';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 @Component({
@@ -47,6 +49,8 @@ export class HomePage {
   
   city: any = "Detecting...";
 
+  alerts: any[] = [];
+
   constructor(
     public navCtrl: NavController,
     private alertCtrl:AlertController,
@@ -54,6 +58,8 @@ export class HomePage {
     private locCtrl: LocationService,
     private loadCtrl: LoadingController,
     private popOverCtrl: PopoverController,
+    private db: AngularFireDatabase,
+    private notify: LocalNotifications,
     private modalCtrl:ModalController) {
 
     this.safe_drive_btn = this.safe_drive_modes[0];
@@ -70,6 +76,31 @@ export class HomePage {
           })
         })
       }
+    })
+
+  
+    this.db.list('alerts/Nagpur').valueChanges(['child_added']).subscribe(data => {
+      this.alerts = [];
+      data.forEach(x => {
+
+        this.db.database.ref('issues/0/' + x['tid']).once('value', snap => {
+          console.log(snap, snap.val(), JSON.stringify(snap.val()));
+          this.notify.schedule({
+            id: x['tid'],
+            title: 'Incident Reported - ' + snap.val()['title'],
+            text: 'Nagpur : ' + snap.val()['description'],
+            icon: 'https://www.shesoftware.com/wp-content/uploads/2017/05/Incident.png',
+            
+          });  
+
+          
+          let alert = {
+            title: 'Incident Reported - ' + snap.val()['title'],
+            description: 'Nagpur : ' + snap.val()['description']
+          }
+          this.alerts.push(alert);
+        })
+      })
     })
   }
 
