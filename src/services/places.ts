@@ -53,8 +53,8 @@ export class PlacesService {
           var url = 'issue/' + newFileName + firebase.auth().currentUser.uid + '.jpg'
           var imgref = storageRef.child(url);
           imgref.putString(imageUrl, firebase.storage.StringFormat.DATA_URL).then(snapshot => {
-            
-          place['category'] = category;
+          let place = new SubPlace(uid,title,description,location,snapshot.downloadURL,category,0,Date.now())
+          
           firebase.database().ref().child('issues/0').push(place).then(data=>{
 
             
