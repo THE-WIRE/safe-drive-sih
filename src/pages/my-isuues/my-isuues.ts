@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth'
+import { IssueDetailsPage } from '../issue-details/issue-details';
 
 /**
  * Generated class for the MyIsuuesPage page.
@@ -18,12 +19,24 @@ import { AngularFireAuth } from 'angularfire2/auth'
 export class MyIsuuesPage {
 
   issues  : any
+  issueDetails = IssueDetailsPage
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private db : AngularFireDatabase,private au : AngularFireAuth) {
 
-   this.issues = db.list('/issues/0',ref=> ref.orderByChild('uid').equalTo(au.auth.currentUser.uid)).valueChanges()
+   //this.issues = db.list('/issues/0',ref=> ref.orderByChild('uid').equalTo(au.auth.currentUser.uid)).valueChanges()
+
+    db.database.ref('/issues/0').on('value',snapshot=>{
+    let data = snapshot.val();
+        let dataWithKeys = Object.keys(data).map((key) => {
+        var obj = data[key];
+        obj._key = key;
+        return obj;
+   })
+   this.issues = dataWithKeys;
+   console.log(this.issues)
    
-  }
+  })
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyIsuuesPage');
@@ -31,6 +44,9 @@ export class MyIsuuesPage {
 
   resolve(){
     console.log('inside resolve');
+  }
+  push(key){
+    this.navCtrl.push(IssueDetailsPage,{s_id: key})
   }
 
 }

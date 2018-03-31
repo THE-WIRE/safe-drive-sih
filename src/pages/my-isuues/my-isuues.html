@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-    <ion-card *ngFor="let issue of issues | async">
+    <ion-card *ngFor="let issue of issues">
         <ion-card-header>
           {{issue.title}}
         </ion-card-header>
@@ -26,7 +26,7 @@
                   <button ion-button small disabled color="light">{{issue.status | issueStat}}</button>
               </ion-col>
               <ion-col col-6>
-                  <button ion-button small>details</button>
+                  <button ion-button small (click)="push(issue._key)">{{issue._key}}</button>
               </ion-col>
               <!-- <ion-col col-4>
                 <button ion-button small (click)="resolve()">Resolve</button>

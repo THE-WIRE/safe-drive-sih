@@ -1,0 +1,46 @@
+<!--
+  Generated template for the IssueDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>issue-details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div id="center">
+    <img id = "image"[src]="issue?.imageUrl">
+    </div>
+    <ion-card>
+    <ion-card-content text-center>
+      <ion-card-title>
+        {{ issue?.title}}
+      </ion-card-title>
+      <p>{{ issue?.description}}</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-grid>
+      <ion-row>
+          <ion-col>
+            <agm-map
+              [latitude]="issue?.location.lat"
+              [longitude]="issue?.location.lng"
+              >
+              <agm-marker
+                [latitude]="issue?.location.lat"
+                [longitude]="issue?.location.lng"></agm-marker>
+            </agm-map>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <p>{{issue?.status | issueStat}}</p>
+        </ion-row>
+  </ion-grid>
+
+</ion-content>

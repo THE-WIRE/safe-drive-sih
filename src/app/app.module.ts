@@ -20,6 +20,7 @@ import { RegisterPage } from '../pages/register/register';
 import { AddIssuePage } from '../pages/add-issue/add-issue'
 import { UserAlertsPage } from '../pages/user-alerts/user-alerts'
 import { MyIsuuesPage } from '../pages/my-isuues/my-isuues'
+import { IssueDetailsPage } from '../pages/issue-details/issue-details'
 
 const environment ={
   production:false,
@@ -64,7 +65,8 @@ import { SettingsPage } from '../pages/settings/settings';
     RightMenuPage,
     SettingsPage,
     UserAlertsPage,
-    MyIsuuesPage
+    MyIsuuesPage,
+    IssueDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ import { SettingsPage } from '../pages/settings/settings';
     RightMenuPage,
     SettingsPage,
     UserAlertsPage,
-    MyIsuuesPage
+    MyIsuuesPage,
+    IssueDetailsPage
   ],
   providers: [
     StatusBar,
@@ -104,7 +107,8 @@ import { SettingsPage } from '../pages/settings/settings';
     Network,
     SMS,
     AngularFireDatabase,
-    LocalNotifications
+    LocalNotifications,
+    IssueDetailsPage
     
   ]
 })
